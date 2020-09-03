@@ -90,24 +90,25 @@ namespace Class_6_DoubleArray
             }
             public void SortEl()
             {
-                Console.WriteLine("\nСортировка элементов по убыванию:");
+                Console.WriteLine("Сортировка элементов по убыванию:");
                 double temp = 0;
-                int k = 0;
+                int k;
                 int s;
                 int l;
-                {
+                for(k=0; k<N; k++)
+                    {
                     for (s = 0; s < M; s++)
                     {
                         for (l = s + 1; l < M; l++)
                             if (DoubelArray[k, l] > DoubelArray[k, s])
                             {
-                                temp = DoubelArray[k, s];
+                                temp = DoubelArray[k,s];
                                 DoubelArray[k, s] = DoubelArray[k, l];
                                 DoubelArray[k, l] = temp;
                             }
 
 
-                        Console.Write($"{DoubelArray[k, s]}\n");
+                        Console.Write($"Строка {k}: {DoubelArray[k, s]}\n");
 
                     }
                 }

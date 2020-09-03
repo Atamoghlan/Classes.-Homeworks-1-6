@@ -1,64 +1,77 @@
 ﻿using System;
 
-namespace Задача_4_Money
+namespace Classes_5_Array
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Money num = new Money();
-            Console.WriteLine("Введите номинал купюры");
-            num.First = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите количество купюр");
-            num.Second = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите стоимость товара");
-            num.Price = Convert.ToInt32(Console.ReadLine());
-            num.QuantityOfMoney();
-            num.EnoughMoneyOrNot();
-            num.CanBuyQuantity();
+            ArrayClass num = new ArrayClass();
+            num.ArrayElements();
+            num.ElementsToConsole();
+            num.Sort();
         }
-        public class Money
+    }
+    public class ArrayClass
+    {
+        public int Scalar
         {
-            public int First { get; set; }
-            public int Second { get; set; }
-            public int Price { get; set; }
-            public int QuantityOfItems { get; set; }
-            public int Cash
+            set
             {
-                get
+                Console.WriteLine("Введите скаляр");
+                int s = Convert.ToInt32(Console.ReadLine());
+                for (int f = 0; f < Array.Length; f++)
                 {
-                    int cash = First * Second;
-
-                    return cash;
+                    Array[f] = s * Array[f];
+                    value = Array[f];                
                 }
-
-            }
-            public Money() { }
-            public Money(int first, int second, int price, int quantityofitems) { First = first; Second = second; Price = price; QuantityOfItems = quantityofitems; }
-            public void QuantityOfMoney()
-            {
-                Console.WriteLine($"Номинал:{First}    Количество купюр:{Second}");
-            }
-            public int EnoughMoneyOrNot()
-            {
-                if (Cash >= Price)
-                {
-                    Console.WriteLine($"У вас достаточно средств для покупки товара на сумму {Price} рублей");
-                    return 1;
-                }
-                else
-                {
-                    Console.WriteLine($"У вас не достаточно средств для покупки товара на сумму {Price} рублей");
-                    return 2;
-                }
-            }
-            public void CanBuyQuantity()
-            {
-                int QuantityOfItems = Cash / Price;
-                if (QuantityOfItems < 1)
-                { Console.WriteLine($"Вы не можете купить даже 1 штуку товара"); }
-                else { Console.WriteLine($"Вы можете купить {QuantityOfItems} шт. товара(ов)"); }
+                
             }
         }
+        
+        public int[] Array { get; set; }
+        public int N { get;}
+        
+        public ArrayClass() { }
+        public ArrayClass (int [] array, int n, int s) {Array[N] = array[n]; N = n; }
+        public void ArrayElements()
+        {
+            Console.Write("Введите количество элементов массива:\t");
+            int elements = int.Parse(Console.ReadLine());
+            Array = new int[elements];
+            for (int i = 0; i < elements; i++)
+            {
+                Console.WriteLine($"Введите элемент массива под индексом {i}:\t");
+                Array[i] = int.Parse(Console.ReadLine());
+            }
+        }
+        public void ElementsToConsole()
+        {
+            Console.WriteLine("Элементы массива:");
+            for (int m = 0; m <= Array.Length-1; m++)
+            {
+                int S = Array[m];
+                
+                Console.Write($"{S}\n");
+            }
+        }
+        public void Sort()
+        {
+            Console.WriteLine("Элементы по возрастанию:");
+            int temp = 0;
+            for (int m = 0; m < Array.Length; m++)
+            {
+                for (int l = m + 1; l < Array.Length; l++)
+                    if (Array[l] < Array[m])
+                    {
+                        temp = Array[m];
+                        Array[m] = Array[l];
+                        Array[l] = temp;
+                    }
+
+                Console.Write($"{Array[m]}\n");
+            }
+        }
+
     }
 }

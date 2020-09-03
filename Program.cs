@@ -1,77 +1,117 @@
 ﻿using System;
+using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 
-namespace Classes_5_Array
+namespace Class_6_DoubleArray
 {
     class Program
     {
         static void Main(string[] args)
         {
-            ArrayClass num = new ArrayClass();
+            ArrayC num = new ArrayC();
             num.ArrayElements();
-            num.ElementsToConsole();
-            num.Sort();
+            num.ToConsole();
+            Console.WriteLine($"\nКоличество элементов: \n{num.Quantity}");
+            num.SortEl();
+
         }
-    }
-    public class ArrayClass
-    {
-        public int Scalar
+        class ArrayC
         {
-            set
+            public int Quantity
             {
-                Console.WriteLine("Введите скаляр");
-                int s = Convert.ToInt32(Console.ReadLine());
-                for (int f = 0; f < Array.Length; f++)
+                get
                 {
-                    Array[f] = s * Array[f];
-                    value = Array[f];                
+                    int Q = M * N;
+                    return Q;
                 }
-                
             }
-        }
-        
-        public int[] Array { get; set; }
-        public int N { get;}
-        
-        public ArrayClass() { }
-        public ArrayClass (int [] array, int n, int s) {Array[N] = array[n]; N = n; }
-        public void ArrayElements()
-        {
-            Console.Write("Введите количество элементов массива:\t");
-            int elements = int.Parse(Console.ReadLine());
-            Array = new int[elements];
-            for (int i = 0; i < elements; i++)
+            public double Scalar
             {
-                Console.WriteLine($"Введите элемент массива под индексом {i}:\t");
-                Array[i] = int.Parse(Console.ReadLine());
-            }
-        }
-        public void ElementsToConsole()
-        {
-            Console.WriteLine("Элементы массива:");
-            for (int m = 0; m <= Array.Length-1; m++)
-            {
-                int S = Array[m];
-                
-                Console.Write($"{S}\n");
-            }
-        }
-        public void Sort()
-        {
-            Console.WriteLine("Элементы по возрастанию:");
-            int temp = 0;
-            for (int m = 0; m < Array.Length; m++)
-            {
-                for (int l = m + 1; l < Array.Length; l++)
-                    if (Array[l] < Array[m])
+                set
+                {
+                    
+                    for (int m = 0; m < N; m++)
                     {
-                        temp = Array[m];
-                        Array[m] = Array[l];
-                        Array[l] = temp;
+                        for (int x = 0; x < M; x++)
+                        {
+                            Console.Write(DoubelArray[m, x] + " ");
+                          
+                        }
                     }
+                    
+                }
+            }
 
-                Console.Write($"{Array[m]}\n");
+            public double[,] DoubelArray { get; set; }
+            public int N { get; set; }
+            public int M { get; set; }
+            public double ScalarMultiply
+            {
+                set
+                {
+                    for (int i = 0; i < N; i++)
+                    {
+                        for (int j = 0; j < M; j++)
+                        {
+                            DoubelArray[i, j] = DoubelArray[i, j] * value;
+                        }
+                    }
+                }
+            }
+
+            public ArrayC() { }
+            public ArrayC(int[,] doubelarray, int n, int m) { DoubelArray[N, M] = doubelarray[n, m]; }
+            public void ArrayElements()
+            {
+                Console.Write("Введите количество N элементов массива:\t");
+                N = int.Parse(Console.ReadLine());
+                Console.Write("Введите количество M элементов массива:\t");
+                M = int.Parse(Console.ReadLine());
+                DoubelArray = new double[N, M];
+                for (int i = 0; i < N; i++)
+                {
+                    for (int h = 0; h < M; h++)
+                    {
+                        Console.WriteLine($"Введите значение элемента под индексом N:{i} M:{h}:\t");
+                        DoubelArray[i, h] = int.Parse(Console.ReadLine());
+                    }
+                }
+            }
+            public void ToConsole()
+            {
+                Console.WriteLine("Элементы массива:");
+                for (int m = 0; m < N; m++)
+                {
+                    for (int x = 0; x < M; x++)
+                    {
+                        Console.Write(DoubelArray[m, x] + " ");
+                    }
+                }
+            }
+            public void SortEl()
+            {
+                Console.WriteLine("\nСортировка элементов по убыванию:");
+                double temp = 0;
+                int k = 0;
+                int s;
+                int l;
+                {
+                    for (s = 0; s < M; s++)
+                    {
+                        for (l = s + 1; l < M; l++)
+                            if (DoubelArray[k, l] > DoubelArray[k, s])
+                            {
+                                temp = DoubelArray[k, s];
+                                DoubelArray[k, s] = DoubelArray[k, l];
+                                DoubelArray[k, l] = temp;
+                            }
+
+
+                        Console.Write($"{DoubelArray[k, s]}\n");
+
+                    }
+                }
             }
         }
-
     }
 }

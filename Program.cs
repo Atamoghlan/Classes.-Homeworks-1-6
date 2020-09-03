@@ -1,55 +1,55 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Security.Cryptography.X509Certificates;
-
-namespace Classes_1
+namespace Задача_3_Rectangle
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Point num = new Point();
-            Console.WriteLine("Введите число для Х");
-            num.X = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите число для Y");
-            num.Y = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Введите число для S");
-            num.S = Convert.ToInt32(Console.ReadLine());
-            num.GetPoint();
-            num.GetDistance();
-            num.GetQuarter();
-            num.Scalar();
+            Console.WriteLine("Задан прямоугольник.");
+            Rectangle num = new Rectangle();
+            Console.WriteLine("Введите длину прямоугольника");
+            num.A = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Введите ширину прямоугольника");
+            num.B = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(num.RealOrNot);
+            num.Length();
+            num.Perimeter();
+            num.Area();
+
         }
+
     }
-    class Point
+    public class Rectangle
     {
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int S { get; set; }
-        public Point() { }
-        public Point(int x, int y, int s) { X = x; Y = y; S = s; }
-        public void GetPoint()
+        public int A { get; set; }
+        public int B { get; set; }
+        public string RealOrNot
         {
-            Console.WriteLine($"Абсцисса {X} ордината {Y}");
+            get
+            {
+                if (A == B)
+                    return "Данный прямоугольник является квадратом";
+                else
+                    return "Данный прямоугольник не является квадратом";
+            }
         }
-        public void GetDistance()
+        public Rectangle() { }
+        public Rectangle(int a, int b) { A = a; B = b; }
+        public void Length()
         {
-            double distance = Math.Sqrt((X * X) + (Y * Y));
-            Console.WriteLine($"Расстояние: {distance}");
+            Console.WriteLine($"Длина прямоугольника: {A}");
+            Console.WriteLine($"Ширина прямоугольника: {B}");
         }
-        public void GetQuarter()
+        public void Perimeter()
         {
-            if (X > 0 && Y > 0) { Console.WriteLine("1-ая Четверть"); }
-            else if (X < 0 && Y > 0) { Console.WriteLine("2-ая Четверть"); }
-            else if (X < 0 && Y < 0) { Console.WriteLine("3-я Четверть"); }
-            else if (X > 0 && Y < 0) { Console.WriteLine("4-ая Четверть"); }
-            else { Console.WriteLine("Точка находится на оси"); }
+            int perimeter = 2 * (A + B);
+            Console.WriteLine($"Периметр равен: {perimeter}");
+
         }
-        public void Scalar()
+        public void Area()
         {
-            int scalarX = S * X;
-            int scalarY = S * Y;
-            Console.WriteLine($"Скаляр X:  {scalarX}     Скаляр Y:  {scalarY}");
+            int area = A * B;
+            Console.WriteLine($"Площадь прямоугольника равна: {area}");
         }
     }
 }
